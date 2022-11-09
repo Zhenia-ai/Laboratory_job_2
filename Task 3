@@ -1,1 +1,76 @@
+import pandas as pd
+import numpy as np
+%matplotlib inline
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.graph_objects as go
 
+#Determine the most expensive fraction (histogram). Determine the most
+#tenacious fraction (choose the best kind of graph).
+df = pd.read_excel("H3Units.xlsx")
+df = df[(df.Castle == 'Castle') | (df.Castle == 'Rampart') | (df.Castle == 'Tower')]
+sum_castle_gold = df[(df.Castle == 'Castle')].Gold.sum(axis = 0)
+sum_rampart_gold = df[(df.Castle == 'Rampart')].Gold.sum(axis = 0)
+sum_tower_gold = df[(df.Castle == 'Tower')].Gold.sum(axis = 0)
+print("Fraction Cost Castle =  ",sum_castle_gold)
+print("Fraction Cost Rampart =  ",sum_rampart_gold)
+print("Fraction Cost Tower =  ",sum_tower_gold)
+
+#Histogram
+x = np.arange(3)
+plt.bar(x, height = [sum_castle_gold, sum_rampart_gold, sum_tower_gold])
+plt.xticks(x, ['castle','rampart', 'tower']); 
+
+sum_castle_health = df[(df.Castle == 'Castle')].Health.sum(axis = 0)
+sum_rampart_health = df[(df.Castle == 'Rampart')].Health.sum(axis = 0)
+sum_tower_health = df[(df.Castle == 'Tower')].Health.sum(axis = 0)
+print("Survivability of the faction Castle =  ",sum_castle_health)
+print("Survivability of the faction Rampart =  ",sum_rampart_health)
+print("Survivability of the faction Tower =  ",sum_tower_health)
+
+#Pie chart
+health = ['Castle', 'Rampart', 'Tower ']
+owner = [sum_castle_health, sum_rampart_health, sum_tower_health]
+
+plt.pie(owner, labels=health)
+plt.title('Health Ownership',fontsize=20)
+plt.show()
+
+#Compare the number of melee, shooting and flying units in
+#each faction (pie chart).
+from pandas.core.indexes.category import contains
+df['Ranged'] = df["Special_abilities"].str.contains("Ranged", case=False, na=False).astype(int)
+df['Flying'] = df["Special_abilities"].str.contains("Flying", case=False, na=False).astype(int)
+ranged_count = df.Ranged.sum()
+flying_count = df.Flying.sum()
+hand_count = df.shape[0] - (ranged_count + flying_count)
+#Pie chart
+Type = ['Ranged', 'Flying', 'HandHand']
+owner = [ranged_count, flying_count, hand_count]
+
+plt.pie(owner, labels=Type)
+plt.title('Type Ownership',fontsize=20)
+plt.show()
+
+#which faction has an advantage in the speed of movement of units
+#(choose the best kind of graph)?
+df = pd.read_excel("H3Units.xlsx")
+df = df[(df.Castle == 'Castle') | (df.Castle == 'Rampart') | (df.Castle == 'Tower')]
+sum_castle_speed = df[(df.Castle == 'Castle')].Speed.sum(axis = 0)
+sum_rampart_speed = df[(df.Castle == 'Rampart')].Speed.sum(axis = 0)
+sum_tower_speed = df[(df.Castle == 'Tower')].Speed.sum(axis = 0)
+max_speed = df.Speed.max()
+df = df[['Castle', 'Speed']]
+rslt_df = df[df['Speed'] == max_speed]
+print("Самый быстрый юнит находится во фракции: ", rslt_df['Castle'], " его скорость = ",max_speed)
+print("Общая скорость фракции Castle = ",sum_castle_speed)
+print("Общая скорость фракции Rampart = ",sum_rampart_speed)
+print("Общая скорость фракции Tower = ",sum_tower_speed)
+
+#Pie chart
+health = ['Castle', 'Rampart', 'Tower ']
+owner = [sum_castle_speed, sum_rampart_speed, sum_tower_speed]
+
+plt.pie(owner, labels=health)
+plt.title('Speed Ownership',fontsize=20)
+plt.show()
