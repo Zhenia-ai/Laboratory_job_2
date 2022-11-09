@@ -29,7 +29,7 @@ for index, rows in df.iterrows():
   my_list =[rows.Attack, rows.Defence, rows.MinimumDamage, rows.MaximumDamage, rows.Health, rows.Speed, rows.Growth, rows.AI_Value, rows.Gold]
   Row_list.append(my_list)
   
- x_1 = Row_list[0]
+x_1 = Row_list[0]
 y_1 = Row_list[14]
 x_1plus = Row_list[1]
 y_1plus = Row_list[15]
