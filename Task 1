@@ -1,1 +1,19 @@
+import pandas as pd
+import numpy as np
 
+df = pd.read_excel("H3Units.xlsx")
+
+#In my file H3Units.xlsx the Minimum Damage and Maximum Damage 
+#columns were renamed to MinimumDamage and MaximumDamage respectively.
+
+df = df[(df.Castle == 'Castle') & (df.Special_abilities != '-')]
+print(df.shape[0])
+count = df.shape[0] #Find out how many units have special abilities.
+
+sum_gold = df.Gold.sum(axis=0) #Calculate the purchase price of all units for a week.
+
+df = df.drop(df.index[0:4])
+df = df.drop(df.index[2:count])
+print(df) #Compare units 4 and 5 shooting ranges, determine their advantages and disadvantages.
+#Despite the fact that the cost of RoyalGriffin is more expensive than Griffin,
+#RoyalGriffin's attack per unit of damage exceeds Griffin by one, and speed by 3 units.
