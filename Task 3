@@ -21,6 +21,10 @@ x = np.arange(3)
 plt.bar(x, height = [sum_castle_gold, sum_rampart_gold, sum_tower_gold])
 plt.xticks(x, ['castle','rampart', 'tower']); 
 
+#                           #     
+#         NEXT CODE         #                
+#                           #     
+
 sum_castle_health = df[(df.Castle == 'Castle')].Health.sum(axis = 0)
 sum_rampart_health = df[(df.Castle == 'Rampart')].Health.sum(axis = 0)
 sum_tower_health = df[(df.Castle == 'Tower')].Health.sum(axis = 0)
