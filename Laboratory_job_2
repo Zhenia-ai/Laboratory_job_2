@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+
+df = pd.read_excel("H3Units.xlsx")
+df.keys()
+#Index(['Unit_name', 'Castle', 'Level', 'Attack', 'Defence', 'MinimumDamage',
+#       'MaximumDamage', 'Health', 'Speed', 'Growth', 'AI_Value', 'Gold',
+#       'Additional_item', 'Special_abilities'],
+#      dtype='object')
+
+df = df[(df.Castle == 'Castle') & (df.Special_abilities != '-')]
+print(df.shape[0])
+count = df.shape[0]
+df
