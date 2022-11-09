@@ -1,1 +1,25 @@
+import pandas as pd
+import numpy as np
+%matplotlib inline
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_excel("H3Units.xlsx")
+
+df = df[(df.Castle == 'Castle') | (df.Castle == 'Rampart')]
+
+df_level1 = df[df.Level == 1]
+df_level1plus = df[df.Level == "1+"]
+df_level2 = df[df.Level == 2]
+df_level2plus = df[df.Level == "2+"]
+df_level3 = df[df.Level == 3]
+df_level3plus = df[df.Level == "3+"]
+df_level4 = df[df.Level == 4]
+df_level4plus = df[df.Level == "4+"]
+df_level5 = df[df.Level == 5]
+df_level5plus = df[df.Level == "5+"]
+df_level6 = df[df.Level == 6]
+df_level6plus = df[df.Level == "6+"]
+df_level7 = df[df.Level == 7]
+df_level7plus = df[df.Level == "7+"]
 
