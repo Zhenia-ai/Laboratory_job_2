@@ -3,6 +3,7 @@ import numpy as np
 %matplotlib inline
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.graph_objects as go
 
 df = pd.read_excel("H3Units.xlsx")
 
@@ -22,4 +23,281 @@ df_level6 = df[df.Level == 6]
 df_level6plus = df[df.Level == "6+"]
 df_level7 = df[df.Level == 7]
 df_level7plus = df[df.Level == "7+"]
+
+Row_list = [] #Compare the characteristics of the units of the two factions (scatter plot + box plot).
+for index, rows in df.iterrows():
+  my_list =[rows.Attack, rows.Defence, rows.MinimumDamage, rows.MaximumDamage, rows.Health, rows.Speed, rows.Growth, rows.AI_Value, rows.Gold]
+  Row_list.append(my_list)
+  
+ x_1 = Row_list[0]
+y_1 = Row_list[14]
+x_1plus = Row_list[1]
+y_1plus = Row_list[15]
+
+x_2 = Row_list[2]
+y_2 = Row_list[16]
+x_2plus = Row_list[3]
+y_2plus = Row_list[17]
+
+x_3 = Row_list[4]
+y_3 = Row_list[18]
+x_3plus = Row_list[5]
+y_3plus = Row_list[19]
+
+x_4 = Row_list[6]
+y_4 = Row_list[20]
+x_4plus = Row_list[7]
+y_4plus = Row_list[21]
+
+x_5 = Row_list[8]
+y_5 = Row_list[22]
+x_5plus = Row_list[9]
+y_5plus = Row_list[23]
+
+x_6 = Row_list[10]
+y_6 = Row_list[24]
+x_6plus = Row_list[11]
+y_6plus = Row_list[25]
+
+x_7 = Row_list[12]
+y_7 = Row_list[26]
+x_7plus = Row_list[13]
+y_7plus = Row_list[27]
+
+#scatter plot--------------------------------------------------------------------------------------------------
+plt.scatter(x_1,y_1,c = "blue")
+plt.show()
+plt.scatter(x_1plus,y_1plus,c = "blue")
+plt.show()
+plt.scatter(x_2,y_2,c = "blue")
+plt.show()
+plt.scatter(x_2plus,y_2plus,c = "blue")
+plt.show()
+plt.scatter(x_3,y_3,c = "blue")
+plt.show()
+plt.scatter(x_3plus,y_3plus,c = "blue")
+plt.show()
+plt.scatter(x_4,y_4,c = "blue")
+plt.show()
+plt.scatter(x_4plus,y_4plus,c = "blue")
+plt.show()
+plt.scatter(x_5,y_5,c = "blue")
+plt.show()
+plt.scatter(x_5plus,y_5plus,c = "blue")
+plt.show()
+plt.scatter(x_6,y_6,c = "blue")
+plt.show()
+plt.scatter(x_6plus,y_6plus,c = "blue")
+plt.show()
+plt.scatter(x_7,y_7,c = "blue")
+plt.show()
+plt.scatter(x_7plus,y_7plus,c = "blue")
+plt.show()
+
+#box plot --------------------------------------------------------------------------------------------------
+sns.boxplot(data=df_level1, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level1plus, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level2, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level2plus, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level3, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level3plus, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level4, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level4plus, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level5, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level5plus, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level6, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level6plus, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level7, x='Attack',y='Health')
+plt.show()
+sns.boxplot(data=df_level7plus, x='Attack',y='Health')
+plt.show()
+------------------------------------------------------------------------------------------------------------------
+#Compare the improved units in the two factions (radar chart). Who
+#will win in a one-on-one confrontation in each dash?
+
+categories = ['Attack', 'Defence', 'MinimumDamage',
+       'MaximumDamage', 'Health', 'Speed', 'Growth', 'AI_Value', 'Gold']
+fig = go.Figure()
+fig.add_trace(go.Scatterpolar(r=x_1plus, theta=categories, fill='toself',name='Castle'))
+fig.add_trace(go.Scatterpolar(r=y_1plus, theta=categories, fill='toself',name='Rampart'))
+
+fig.update_layout(
+  polar=dict(
+    radialaxis=dict(
+      visible=True,
+      range=[0, 150]
+    )),
+  showlegend=False
+)
+fig.show()
+#At 1+ level, fraction Rampart will win in a one-on-one confrontation.
+
+categories = ['Attack', 'Defence', 'MinimumDamage',
+       'MaximumDamage', 'Health', 'Speed', 'Growth', 'AI_Value', 'Gold']
+fig = go.Figure()
+fig.add_trace(go.Scatterpolar(r=x_2plus, theta=categories, fill='toself',name='Castle'))
+fig.add_trace(go.Scatterpolar(r=y_2plus, theta=categories, fill='toself',name='Rampart'))
+
+fig.update_layout(
+  polar=dict(
+    radialaxis=dict(
+      visible=True,
+      range=[0, 300]
+    )),
+  showlegend=False
+)
+fig.show()
+#At 2+ level, fraction Rampart will win in a one-on-one confrontation.
+
+categories = ['Attack', 'Defence', 'MinimumDamage',
+       'MaximumDamage', 'Health', 'Speed', 'Growth', 'AI_Value', 'Gold']
+fig = go.Figure()
+fig.add_trace(go.Scatterpolar(r=x_3plus, theta=categories, fill='toself',name='Castle'))
+fig.add_trace(go.Scatterpolar(r=y_3plus, theta=categories, fill='toself',name='Rampart'))
+
+fig.update_layout(
+  polar=dict(
+    radialaxis=dict(
+      visible=True,
+      range=[0, 600]
+    )),
+  showlegend=False
+)
+fig.show()
+#At 3+ level, fraction Castle will win in a one-on-one confrontation.
+
+categories = ['Attack', 'Defence', 'MinimumDamage',
+       'MaximumDamage', 'Health', 'Speed', 'Growth', 'AI_Value', 'Gold']
+fig = go.Figure()
+fig.add_trace(go.Scatterpolar(r=x_4plus, theta=categories, fill='toself',name='Castle'))
+fig.add_trace(go.Scatterpolar(r=y_4plus, theta=categories, fill='toself',name='Rampart'))
+
+fig.update_layout(
+  polar=dict(
+    radialaxis=dict(
+      visible=True,
+      range=[0, 600]
+    )),
+  showlegend=False
+)
+fig.show()
+#At 4+ level, fraction Castle will win in a one-on-one confrontation.
+
+categories = ['Attack', 'Defence', 'MinimumDamage',
+       'MaximumDamage', 'Health', 'Speed', 'Growth', 'AI_Value', 'Gold']
+fig = go.Figure()
+fig.add_trace(go.Scatterpolar(r=x_5plus, theta=categories, fill='toself',name='Castle'))
+fig.add_trace(go.Scatterpolar(r=y_5plus, theta=categories, fill='toself',name='Rampart'))
+
+fig.update_layout(
+  polar=dict(
+    radialaxis=dict(
+      visible=True,
+      range=[0, 1500]
+    )),
+  showlegend=False
+)
+fig.show()
+#At 5+ level, fraction Rampart will win in a one-on-one confrontation.
+
+categories = ['Attack', 'Defence', 'MinimumDamage',
+       'MaximumDamage', 'Health', 'Speed', 'Growth', 'AI_Value', 'Gold']
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatterpolar(r=x_6plus, theta=categories, fill='toself',name='Castle'))
+fig.add_trace(go.Scatterpolar(r=y_6plus, theta=categories, fill='toself',name='Rampart'))
+
+fig.update_layout(
+  polar=dict(
+    radialaxis=dict(
+      visible=True,
+      range=[0, 4000]
+    )),
+  showlegend=False
+)
+fig.show()
+#At 6+ level, fraction Castle will win in a one-on-one confrontation.
+
+categories = ['Attack', 'Defence', 'MinimumDamage',
+       'MaximumDamage', 'Health', 'Speed', 'Growth', 'AI_Value', 'Gold']
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatterpolar(r=x_7plus, theta=categories, fill='toself',name='Castle'))
+fig.add_trace(go.Scatterpolar(r=y_7plus, theta=categories, fill='toself',name='Rampart'))
+
+fig.update_layout(
+  polar=dict(
+    radialaxis=dict(
+      visible=True,
+      range=[0, 9000]
+    )),
+  showlegend=False
+)
+fig.show()
+#At 7+ level, fraction Castle will win in a one-on-one confrontation.
+------------------------------------------------------------------------------------------------------------
+#Determine the total number of characteristics of the unimproved
+#units of the faction and compare this value with the improved one (histogram).
+df2 = df
+df3 = df
+df2 = df2.drop(index=[0,2,4,6,8,10,12,14,16,18,20,22,24,26])
+df3 = df3.drop(index=[1,3,5,7,9,11,13,15,17,19,21,23,25,27])
+
+sum_attackplus = df2.Attack.sum(axis=0)
+sum_defenceplus = df2.Defence.sum(axis=0)
+sum_minimumdamageplus = df2.MinimumDamage.sum(axis=0)
+sum_maximumdamageplus = df2.MaximumDamage.sum(axis=0)
+sum_healthplus = df2.Health.sum(axis=0)
+sum_speedplus = df2.Speed.sum(axis=0)
+sum_growthplus = df2.Growth.sum(axis=0)
+sum_ai_valueplus = df2.AI_Value.sum(axis=0)
+sum_goldplus = df2.Gold.sum(axis=0)
+
+sum_attack = df3.Attack.sum(axis=0)
+sum_defence = df3.Defence.sum(axis=0)
+sum_minimumdamage = df3.MinimumDamage.sum(axis=0)
+sum_maximumdamage = df3.MaximumDamage.sum(axis=0)
+sum_health = df3.Health.sum(axis=0)
+sum_speed = df3.Speed.sum(axis=0)
+sum_growth = df3.Growth.sum(axis=0)
+sum_ai_value = df3.AI_Value.sum(axis=0)
+sum_gold = df3.Gold.sum(axis=0)
+
+sum_df2=sum_attackplus+sum_defenceplus+sum_minimumdamageplus+sum_maximumdamageplus+sum_healthplus+sum_speedplus+sum_growthplus+sum_ai_valueplus+sum_goldplus
+sum_df3=sum_attack+sum_defence+sum_minimumdamage+sum_maximumdamage+sum_speed+sum_growth+sum_ai_value+sum_gold
+df2 = df3.drop(index=[0,2,4,6,8,10,12,14,16,18,20,22,24,26])
+df2['Sum_Df2'] = [sum_df2]
+df2['Sum_Df3'] = [sum_df3]
+a = np.array([sum_df2, sum_df3])
+
+#Histogram
+x = np.arange(2)
+plt.bar(x, height = [sum_df2, sum_df3])
+plt.xticks(x, ['Improved','Not improved'])
+
+--------------------------------------------------------------------------------------------------------
+df2 = df[(df.Castle == 'Castle')]
+df3 = df[(df.Castle == 'Rampart')]
+maxValues_df2 = df2[['Attack']].max()
+minValues_df2 = df2[['Attack']].min()
+razn_df2 = maxValues_df2 - minValues_df2
+maxValues_df3 = df3[['Attack']].max()
+minValues_df3 = df3[['Attack']].min()
+razn_df3 = maxValues_df3 - minValues_df3
+print("Minimum spread of faction units Castle = ", razn_df2,"and minimum spread of faction units Rampart = ", razn_df3)
+print(razn_df3)#Find the faction with the minimum unit damage spread.
 
