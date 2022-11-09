@@ -123,7 +123,7 @@ sns.boxplot(data=df_level7, x='Attack',y='Health')
 plt.show()
 sns.boxplot(data=df_level7plus, x='Attack',y='Health')
 plt.show()
-------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
 #Compare the improved units in the two factions (radar chart). Who
 #will win in a one-on-one confrontation in each dash?
 
@@ -249,7 +249,7 @@ fig.update_layout(
 )
 fig.show()
 #At 7+ level, fraction Castle will win in a one-on-one confrontation.
-------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------
 #Determine the total number of characteristics of the unimproved
 #units of the faction and compare this value with the improved one (histogram).
 df2 = df
@@ -289,7 +289,7 @@ x = np.arange(2)
 plt.bar(x, height = [sum_df2, sum_df3])
 plt.xticks(x, ['Improved','Not improved'])
 
---------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------------
 df2 = df[(df.Castle == 'Castle')]
 df3 = df[(df.Castle == 'Rampart')]
 maxValues_df2 = df2[['Attack']].max()
