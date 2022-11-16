@@ -13,8 +13,12 @@ count = df.shape[0] #Find out how many units have special abilities.
 sum_gold = df.Gold.sum(axis=0) #Calculate the purchase price of all units for a week.
 print(sum_gold)
 
-df = df.drop(df.index[0:4])
-df = df.drop(df.index[2:count])
+df = pd.read_excel("H3Units.xlsx")
+df = df[(df.Castle == 'Castle') & ((df.Level == 4) | (df.Level == 5) | (df.Level == "4+") | (df.Level == "5+"))]
+print(df.head(4))
 print(df) #Compare units 4 and 5 shooting ranges, determine their advantages and disadvantages.
-#Despite the fact that the cost of RoyalGriffin is more expensive than Griffin,
-#RoyalGriffin's attack per unit of damage exceeds Griffin by one, and speed by 3 units.
+#According to statistics, you can see that the lower the level of the character, the lower the 
+#cost of the characters. The Swordsman has the lowest attack among these levels 10, the Crusader, Monk, Zealot
+#has the highest attack 12. Level 4 wears more armor than level 5, but level 5 deals more damage.
+#Health is higher at level 4. Their speeds are about the same. Improved heroes of both levels have an
+#AI_Value value higher than that of non-improved heroes.
